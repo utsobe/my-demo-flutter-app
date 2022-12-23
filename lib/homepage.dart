@@ -1,7 +1,10 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:my_demo_flutter_app/controllers/cart_controller.dart';
 import 'package:my_demo_flutter_app/views/shopping_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,10 +30,14 @@ class _HomePageState extends State<HomePage> {
       ),
     ),
     Center(
-      child: Text(
-        'Settings',
-        style: TextStyle(fontSize: 60),
-      ),
+      child: GetX<CartController>(builder: (controller) {
+        return Text(
+          'Cart: ${controller.count}',
+          style: TextStyle(
+            fontSize: 60,
+          ),
+        );
+      }),
     ),
   ];
 
@@ -72,8 +79,22 @@ class _HomePageState extends State<HomePage> {
                 text: 'Search',
               ),
               GButton(
-                icon: Icons.settings,
-                text: 'Settings',
+                icon: Icons.shopping_cart_outlined,
+                text: 'Cart',
+                leading: currentScreen == 3
+                    ? null
+                    : Badge(
+                        badgeColor: Colors.amber,
+                        position: BadgePosition.topEnd(top: -12, end: -12),
+                        badgeContent:
+                            GetX<CartController>(builder: (controller) {
+                          return Text('${controller.count}');
+                        }),
+                        child: Icon(
+                          Icons.shopping_cart_outlined,
+                          color: Colors.white,
+                        ),
+                      ),
               ),
             ],
           ),
