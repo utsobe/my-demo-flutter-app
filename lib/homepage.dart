@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:my_demo_flutter_app/views/shopping_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -12,12 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final screens = [
-    Center(
-      child: Text(
-        'Home',
-        style: TextStyle(fontSize: 60),
-      ),
-    ),
+    ShoppingPage(),
     Center(
       child: Text(
         'Likes',
