@@ -39,6 +39,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.teal,
       body: screens[currentScreen],
       bottomNavigationBar: Container(
         color: Colors.black,
@@ -48,7 +49,7 @@ class _HomePageState extends State<HomePage> {
             backgroundColor: Colors.black,
             color: Colors.white,
             activeColor: Colors.white,
-            tabBackgroundColor: Colors.grey,
+            tabBackgroundColor: Colors.teal,
             gap: 0,
             padding: EdgeInsets.all(16.0),
             onTabChange: (index) {

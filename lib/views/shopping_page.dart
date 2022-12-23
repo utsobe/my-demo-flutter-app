@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:my_demo_flutter_app/controllers/cart_controller.dart';
 import 'package:my_demo_flutter_app/controllers/shopping_controller.dart';
 
 class ShoppingPage extends StatelessWidget {
   final shoppingController = Get.put(ShoppingController());
+  final cartController = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +47,10 @@ class ShoppingPage extends StatelessWidget {
                           ),
                           MaterialButton(
                             onPressed: () {
-                              // cartController
-                              //     .addToCart(controller.products[index]);
+                              cartController
+                                  .addToCart(controller.products[index]);
                             },
-                            color: Colors.blue,
+                            color: Colors.teal,
                             textColor: Colors.white,
                             child: Text('Add to Cart'),
                           ),
@@ -60,7 +62,15 @@ class ShoppingPage extends StatelessWidget {
               );
             }),
           ),
-          Text('Total amount: '),
+          GetX<CartController>(builder: (controller) {
+            return Text(
+              'Total amount: \$ ${controller.totalPrice}',
+              style: TextStyle(
+                fontSize: 32,
+                color: Colors.white,
+              ),
+            );
+          }),
           SizedBox(height: 100),
         ],
       ),
